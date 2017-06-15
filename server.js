@@ -25,7 +25,19 @@ app.get('/delete', function (req, res) {
   res.render('index', {cityList : cityList});
 });
 
+app.get('/update', function (req, res) {
+  
+  var newList = JSON.parse(req.query.newList);
+  var newCityList=[];
+  for (var i = 0; i < newList.length; i++) {
+    newCityList.push(cityList[newList[i]]);
+  }
+  cityList=newCityList;
 
-app.listen(80, function () {
+  res.render('index', {cityList : cityList});
+});
+
+
+app.listen(8080, function () {
   console.log("Server listening on port 80");
 });
