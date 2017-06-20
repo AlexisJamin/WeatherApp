@@ -10,6 +10,12 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
   <script src="./script.js"></script>
 </head>
 <body>
@@ -29,8 +35,7 @@
       </div>
     </div>
   </div>
-  <div id="content">
-    
+  <div id="mapid">
   </div>
   <div class="container">
     <div class="row">
@@ -39,7 +44,16 @@
           <%
           for(var i=0; i<cityList.length ; i++) {
           %>
-            <li id=<%=i%> class="list-group-item"><span class="city"><%= cityList[i].name %></span> <img class="logo-meteo" src="http://openweathermap.org/img/w/<%=cityList[i].weather[0].icon%>.png"> <span class="desc"><%= cityList[i].weather[0].description %></span> <span class="label label-warning"><%= cityList[i].main.temp_max %> °C</span> <span class="label label-default"><%= cityList[i].main.temp_min %> °C</span> <a href="./delete?position=<%=i%>"><span class="glyphicon glyphicon-remove-circle"></span></a></li>
+            <li id=<%=cityList[i].sort%> class="list-group-item">
+            <span class="city"><%= cityList[i].name %></span> 
+            <img class="logo-meteo" src="http://openweathermap.org/img/w/<%=cityList[i].icon%>.png"> 
+            <span class="desc"><%= cityList[i].description %></span> 
+            <span class="label label-warning"><%= cityList[i].temp_max %> °C</span> 
+            <span class="label label-default"><%= cityList[i].temp_min %> °C</span> 
+            <input type="hidden" class="coordLon" value=<%=cityList[i].lon%> > </input>
+            <input type="hidden" class="coordLat" value=<%=cityList[i].lat%> > </input>
+            <a href="./delete?id=<%=cityList[i]._id%>"><span class="glyphicon glyphicon-remove-circle"></span></a>
+            </li>
           <%
           }
           %>
