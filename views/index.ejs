@@ -44,7 +44,7 @@
           <%
           for(var i=0; i<cityList.length ; i++) {
           %>
-            <li id=<%=cityList[i].sort%> class="list-group-item">
+            <li id="<%=cityList[i].sort%>" class="list-group-item">
             <span class="city"><%= cityList[i].name %></span> 
             <img class="logo-meteo" src="http://openweathermap.org/img/w/<%=cityList[i].icon%>.png"> 
             <span class="desc"><%= cityList[i].description %></span> 

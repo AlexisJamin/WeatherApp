@@ -29,8 +29,16 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+$("li").on("click",function() {
+    map.flyTo([$(this).find(".coordLat").val(), $(this).find(".coordLon").val()], 10);
+  
+});
+
+
 $("li").each(function(i){
 L.marker([$(this).find(".coordLat").val(), $(this).find(".coordLon").val()]).addTo(map)
+.bindPopup($(this).find(".city").text() + "  " + "<img src=" + $(this).find(".logo-meteo").attr("src") + '>' + "  " + $(this).find(".desc").text() + "  " + $(this).find(".label").text())
+.openPopup();
 });
   
 
